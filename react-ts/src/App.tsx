@@ -1,7 +1,5 @@
+import { AppRoutes } from "./routes/AppRoutes";
+
 export function App() {
-    return (
-        <div>
-            <h1>Financeasy Frontend</h1>
-        </div>
-    );
+    return <AppRoutes />;
 }
