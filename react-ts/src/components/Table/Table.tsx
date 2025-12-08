@@ -47,7 +47,7 @@ export function Table({ columns, data }: TableProps) {
                 </tr>
                 )}
 
-                {data.map((row, index) => (
+                {data.map((row: any, index: number) => (
                 <tr key={index} style={{ borderBottom: "1px solid #eee" }}>
                     {columns.map((col) => (
                     <td key={col.key} style={{ padding: "12px" }}>
