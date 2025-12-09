@@ -2,26 +2,22 @@ import React, { useState } from "react";
 import { MainLayout } from "../layout/MainLayout";
 import { Button } from "../components/Button/Button";
 import { userApi } from "../api/userApi";
-import styles from "./LoginPage.module.css";
+import styles from "./RegisterPage.module.css";
 import { Link } from "react-router-dom";
 
-export function LoginPage() {
+export function RegisterPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  async function handleLogin(e: React.FormEvent) {
+  async function handleRegister(e: React.FormEvent) {
     e.preventDefault();
 
     try {
-      const response = await userApi.login({ email, password });
+      const response = await userApi.register({ email, password });
 
-      const token = response.data;
-
-      localStorage.setItem("authToken", token);
-
-      alert("Login realizado com sucesso!");
+      alert("Cadastro realizado com sucesso!");
     } catch (error) {
-      alert("Credenciais inválidas ou erro no login.");
+      alert("Ocorreu um erro.");
     }
   }
 
@@ -29,8 +25,8 @@ export function LoginPage() {
     <MainLayout>
       <div className={styles.principalContainer}>
         <div className={styles.loginCard}>
-          <h1>Login</h1>
-          <form onSubmit={handleLogin}>
+          <h1>Cadastrar</h1>
+          <form onSubmit={handleRegister}>
             <div>
               <label>Email</label>
               <br />
@@ -54,7 +50,7 @@ export function LoginPage() {
             <div>
               <Button label="Entrar" type="submit" />
             </div>
-            <Link to={"/register"}>Não possui uma conta? Cadastre-se</Link>
+            <Link to={"/login"}>Já possui uma conta? Entre agora</Link>
           </form>
         </div>
       </div>

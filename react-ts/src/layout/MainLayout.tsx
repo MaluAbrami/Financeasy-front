@@ -9,19 +9,8 @@ type Props = {
 export function MainLayout({ children }: Props) {
     return (
         <div className="body">
-            <header
-                style={{
-                height: "60px",
-                backgroundColor: "#2D2E32",
-                color: "white",
-                display: "flex",
-                alignItems: "center",
-                padding: "0 20px",
-                fontSize: "18px",
-                fontWeight: "bold",
-                }}
-            >
-                <h1>Financeasy</h1>
+            <header>
+                <h3>Financeasy</h3>
 
             <ul>
                 <li>
@@ -37,7 +26,7 @@ export function MainLayout({ children }: Props) {
 
             </header>
 
-            <main style={{ flex: 1, padding: "20px" }}>{children}</main>
+            <main>{children}</main>
         </div>
     );
 }

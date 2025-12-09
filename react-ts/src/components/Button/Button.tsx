@@ -12,7 +12,7 @@ export function Button({ label, onClick, type = "button" }: ButtonProps) {
         style={{
             backgroundColor: "#2D2E32",
             color: "white",
-            padding: "10px 16px",
+            padding: "12px 48px",
             borderRadius: "6px",
             border: "none",
             cursor: "pointer",
