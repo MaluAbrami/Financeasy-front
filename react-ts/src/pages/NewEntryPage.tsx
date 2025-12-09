@@ -2,18 +2,30 @@ import { MainLayout } from "../layout/MainLayout";
 import { Button } from "../components/Button/Button.tsx";
 import { useState, type FormEvent, type ChangeEvent } from "react";
 import { Link } from "react-router-dom";
+import { financialEntryApi } from "../api/financialEntryApi.ts";
 import styles from "./NewEntryPage.module.css";
 
 export function NewEntryPage() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [type, setType] = useState("Expense");
-  const [isFixed, setIsFixed] = useState("false");
-  const [amount, setAmount] = useState("");
+  const [type, setType] = useState<"Expense" | "Income">("Expense");
+  const [isFixed, setIsFixed] = useState(false);
+  const [amount, setAmount] = useState(0);
+  const [date, setDate] = useState("");
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    alert("Em breve enviaremos ao backend!");
+    
+    try {
+      const dateIso = date.toString();
+
+      financialEntryApi.create({amount, category, description, date, type, isFixed});
+
+      alert("Lançamento cadastrado!");
+      
+    } catch (e) {
+      alert("Ocorreu um erro");
+    }
   }
 
   return (
@@ -40,12 +52,24 @@ export function NewEntryPage() {
                 type="number"
                 value={amount}
                 onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setAmount(e.target.value)
+                  setAmount(Number(e.target.value))
                 }
                 placeholder="R$ 0,00"
                 required
               />
             </div>
+            <div className={styles.formContainer}>
+              <label>Data</label>
+              <input 
+                type="date"
+                name="date" 
+                value={date}
+                onChange={(e : ChangeEvent<HTMLInputElement>) => 
+                  setDate(e.target.value)}
+                required
+                />
+            </div>
+
             <div className={styles.formContainer}>
               <label>Tipo</label>
               <label className={styles.radioLabel}>
@@ -77,8 +101,8 @@ export function NewEntryPage() {
                   type="radio"
                   name="isFixed"
                   value="true"
-                  checked={isFixed === "true"}
-                  onChange={() => setIsFixed("true")}
+                  checked={isFixed === true}
+                  onChange={() => setIsFixed(true)}
                 />
                 <span>Sim</span>
               </label>
@@ -87,8 +111,8 @@ export function NewEntryPage() {
                   type="radio"
                   name="isFixed"
                   value="false"
-                  checked={isFixed === "false"}
-                  onChange={() => setIsFixed("false")}
+                  checked={isFixed === false}
+                  onChange={() => setIsFixed(false)}
                 />
                 <span>Não</span>
               </label>
