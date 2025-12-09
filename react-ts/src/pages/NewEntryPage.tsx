@@ -1,75 +1,118 @@
 import { MainLayout } from "../layout/MainLayout";
-import { Card } from "../components/Card/Card";
-import { Button } from "../components/Button/Button";
-import { useState, type FormEvent } from "react";
+import { Button } from "../components/Button/Button.tsx";
+import { useState, type FormEvent, type ChangeEvent } from "react";
+import { Link } from "react-router-dom";
+import styles from "./NewEntryPage.module.css";
 
 export function NewEntryPage() {
-    const [description, setDescription] = useState("");
-    const [type, setType] = useState("entrada");
-    const [amount, setAmount] = useState("");
-    const [date, setDate] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [type, setType] = useState("Expense");
+  const [isFixed, setIsFixed] = useState("false");
+  const [amount, setAmount] = useState("");
 
-    function handleSubmit(e: FormEvent<HTMLFormElement>) {
-        e.preventDefault();
-        alert("Em breve enviaremos ao backend!")
-    }
+  function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    alert("Em breve enviaremos ao backend!");
+  }
 
-    return (
-        <MainLayout>
-            <h1>Novo Lançamento</h1>
-
-            <Card>
-                <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-                    
-                    <div>
-                        <label>Descrição</label><br />
-                        <input
-                        type="text"
-                        value={description}
-                        onChange={(e) => setDescription(e.target.value)}
-                        style={{ padding: "8px", width: "100%" }}
-                        required
-                        />
-                    </div>
-
-                    <div>
-                        <label>Tipo</label><br />
-                        <select
-                        value={type}
-                        onChange={(e) => setType(e.target.value)}
-                        style={{ padding: "8px", width: "100%" }}
-                        >
-                        <option value="entrada">Entrada</option>
-                        <option value="saida">Saída</option>
-                        </select>
-                    </div>
-
-                    <div>
-                        <label>Valor (R$)</label><br />
-                        <input
-                        type="number"
-                        step="0.01"
-                        value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
-                        style={{ padding: "8px", width: "100%" }}
-                        required
-                        />
-                    </div>
-
-                    <div>
-                        <label>Data</label><br />
-                        <input
-                        type="date"
-                        value={date}
-                        onChange={(e) => setDate(e.target.value)}
-                        style={{ padding: "8px", width: "100%" }}
-                        required
-                        />
-                    </div>
-
-                    <Button type="submit" label="Salvar" />   
-                </form>             
-            </Card>
-        </MainLayout>
-    );
+  return (
+    <MainLayout>
+      <div className={styles.container}>
+        <h1>Novo Lançamento</h1>
+        <form onSubmit={handleSubmit} className={styles.form}>
+          <div className={styles.allFormsContainer}>
+            <div className={styles.formContainer}>
+              <label>Categoria</label>
+              <input
+                type="text"
+                value={category}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setCategory(e.target.value)
+                }
+                placeholder="Informe a categoria do registro para facilitar buscas"
+                required
+              />
+            </div>
+            <div className={styles.formContainer}>
+              <label>Valor</label>
+              <input
+                type="number"
+                value={amount}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setAmount(e.target.value)
+                }
+                placeholder="R$ 0,00"
+                required
+              />
+            </div>
+            <div className={styles.formContainer}>
+              <label>Tipo</label>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="type"
+                  value="Income"
+                  checked={type === "Income"}
+                  onChange={() => setType("Income")}
+                  required
+                />
+                <span>Entrada</span>
+              </label>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="type"
+                  value="Expense"
+                  checked={type === "Expense"}
+                  onChange={() => setType("Expense")}
+                />
+                <span>Saída</span>
+              </label>
+            </div>
+            <div className={styles.formContainer}>
+              <label>Fixo</label>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="isFixed"
+                  value="true"
+                  checked={isFixed === "true"}
+                  onChange={() => setIsFixed("true")}
+                />
+                <span>Sim</span>
+              </label>
+              <label className={styles.radioLabel}>
+                <input
+                  type="radio"
+                  name="isFixed"
+                  value="false"
+                  checked={isFixed === "false"}
+                  onChange={() => setIsFixed("false")}
+                />
+                <span>Não</span>
+              </label>
+            </div>
+            <div className={styles.formContainer}>
+              <label>Descrição</label>
+              <input
+                type="text"
+                value={description}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setDescription(e.target.value)
+                }
+                placeholder="Sinta-se a vontade para dar uma descrição do registro"
+              />
+            </div>
+            <div className={styles.buttonContainer}>
+              <Link to={"/entries"}>
+                <Button type="button" label="Voltar" />
+              </Link>
+              <Button type="submit" label="Salvar" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </MainLayout>
+  );
 }
