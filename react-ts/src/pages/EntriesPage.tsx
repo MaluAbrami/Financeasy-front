@@ -27,11 +27,12 @@ useEffect(() => {
         isFixed: entry.isFixed ? "Sim" : "Não",
         actions: (
           <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
-            <TableActionButton
-              icon={<Pencil size={18} />}
-              onClick={() => handleDelete(entry.id!)}
-              tooltip="Editar"
-            />
+            <Link to={"/entries/update"} state={{ entry }}>
+              <TableActionButton
+                icon={<Pencil size={18} />}
+                tooltip="Editar"
+              />
+            </Link>
 
             <TableActionButton
               icon={<Trash size={18} />}

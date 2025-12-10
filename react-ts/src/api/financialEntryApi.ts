@@ -16,9 +16,7 @@ export const financialEntryApi = {
     http.post("/financial-entry", data),
 
   update: (id: string, data: Partial<FinancialEntry>) =>
-    http.patch(`/financial-entry`, data, {
-      params: { id: id }
-    }),
+    http.patch(`/financial-entry/${id}`, data),
 
   delete: (id: string) =>
     http.delete(`/financial-entry`, {
