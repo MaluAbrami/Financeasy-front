@@ -1,0 +1,29 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+th {
+    text-align: center;
+    padding: 12px;
+    background-color: #2D2E32;
+    color: white;
+    font-weight: 600;
+}
+
+tr {
+    border-bottom: 1px solid #eee;
+}
+
+td {
+    padding: 12px;
+}
+
+.actionsCell {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}

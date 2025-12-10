@@ -1,0 +1,26 @@
+.tableActionBtn {
+  background: #e7e7e7;
+  border: none;
+  padding: 6px;
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.tableActionBtn:hover {
+  background: #d5d5d5;
+}
+
+.delete {
+  background: #ff4d4d;
+  color: white;
+}
+
+.delete:hover {
+  background: #e03d3d;
+}
