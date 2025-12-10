@@ -4,11 +4,12 @@ import { useState, type FormEvent, type ChangeEvent } from "react";
 import { Link } from "react-router-dom";
 import { financialEntryApi } from "../api/financialEntryApi.ts";
 import styles from "./NewEntryPage.module.css";
+import { EntryType } from "../types/EntryType.ts";
 
 export function NewEntryPage() {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
-  const [type, setType] = useState<"Expense" | "Income">("Expense");
+  const [type, setType] = useState<EntryType>(EntryType.Expense);
   const [isFixed, setIsFixed] = useState(false);
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState("");
@@ -76,9 +77,9 @@ export function NewEntryPage() {
                 <input
                   type="radio"
                   name="type"
-                  value="Income"
-                  checked={type === "Income"}
-                  onChange={() => setType("Income")}
+                  value= "EntryType.Income"
+                  checked={type === EntryType.Income}
+                  onChange={() => setType(EntryType.Income)}
                   required
                 />
                 <span>Entrada</span>
@@ -87,9 +88,9 @@ export function NewEntryPage() {
                 <input
                   type="radio"
                   name="type"
-                  value="Expense"
-                  checked={type === "Expense"}
-                  onChange={() => setType("Expense")}
+                  value="EntryType.Expense"
+                  checked={type === EntryType.Expense}
+                  onChange={() => setType(EntryType.Expense)}
                 />
                 <span>Saída</span>
               </label>

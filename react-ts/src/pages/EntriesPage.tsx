@@ -7,6 +7,7 @@ import { financialEntryApi } from "../api/financialEntryApi";
 import { useEffect, useState } from "react";
 import type { GetAllFinancialEntrysByUser } from "../types/GetAllFinancialEntrysByUser";
 import styles from "./EntriesPage.module.css";
+import { EntryType } from "../types/EntryType";
 
 export function EntriesPage() {
   const [entries, setEntries] = useState<GetAllFinancialEntrysByUser[]>([]);
@@ -15,7 +16,7 @@ export function EntriesPage() {
     financialEntryApi.list().then((res) => {
       const list = res.data.financialsByUser.map((entry) => ({
         ...entry,
-        type: entry.type == 1 ? "Gasto" : "Ganho",
+        type: entry.type === EntryType.Expense ? "Saída" : "Entrada",
         isFixed: entry.isFixed ? "Sim" : "Não",
         date: entry.date.split("T")[0], // opcional para formatar
       }));

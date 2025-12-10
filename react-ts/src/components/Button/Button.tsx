@@ -1,3 +1,5 @@
+import styles from "./Button.module.css";
+
 type ButtonProps = {
     label: string;
     onClick?: () => void;
@@ -9,16 +11,7 @@ export function Button({ label, onClick, type = "button" }: ButtonProps) {
         <button
         type={type}
         onClick={onClick}
-        style={{
-            backgroundColor: "#2D2E32",
-            color: "white",
-            padding: "12px 48px",
-            borderRadius: "6px",
-            border: "none",
-            cursor: "pointer",
-            fontSize: "15px",
-            fontWeight: "500",
-        }}
+        className={styles.button}
         >
         {label}
         </button>
