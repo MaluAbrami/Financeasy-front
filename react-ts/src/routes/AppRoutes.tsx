@@ -6,6 +6,7 @@ import { LoginPage } from "../pages/LoginPage.tsx";
 import { RegisterPage } from "../pages/RegisterPage.tsx";
 import { UpdateEntryPage } from "../pages/UpdateEntryPage.tsx";
 import { PrivateRoute } from "./PrivateRoute.tsx";
+import { UserPage } from "../pages/UserPage.tsx";
 
 export function AppRoutes() {
     return (
@@ -47,6 +48,13 @@ export function AppRoutes() {
                 <Route path="/register" 
                     element={
                         <RegisterPage/>
+                    }>
+                </Route>
+                <Route path="/user" 
+                    element={
+                        <PrivateRoute>
+                            < UserPage /> 
+                        </PrivateRoute>
                     }>
                 </Route>
             </Routes>
