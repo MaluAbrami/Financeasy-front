@@ -22,7 +22,7 @@ export function EntriesPage() {
           amount: entry.amount,
           category: entry.category,
           description: entry.description,
-          date: new Date(entry.date.split("T")[0]).toLocaleDateString("pt-BR"),
+          date: new Date(entry.date).toLocaleDateString("pt-BR"),
           type: entry.type === EntryType.Expense ? "Saída" : "Entrada",
           isFixed: entry.isFixed ? "Sim" : "Não",
           actions: (
