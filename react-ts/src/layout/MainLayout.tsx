@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "./MainLayout.module.css"
 import { AuthContext } from "../utils/AuthContext";
 import { Button } from "../components/Button/Button";
-import { User } from "lucide-react";
+import { User, Home } from "lucide-react";
 import { TableActionButton } from "../components/Table/TableActionButton";
 import styles from "./MainLayout.module.css"
 
@@ -28,6 +28,9 @@ export function MainLayout({ children }: Props) {
                 </li> */}
                 <li>
                     { !isLoggedIn && <Link to={"/login"}>Entrar</Link> }
+                </li>
+                <li>
+                    { isLoggedIn && <Link to={"/home"}><TableActionButton icon={<Home size={24} />}></TableActionButton></Link> }
                 </li>
                 <li>
                     { isLoggedIn && <Link to={"/user"}><TableActionButton icon={<User size={24} />}></TableActionButton></Link> }
