@@ -14,13 +14,13 @@ export function HomePage() {
                 <p>Entradas: R$ 0,00</p>
                 <p>Saídas: R$ 0,00</p>
                 <p>Saldo: R$ 0,00</p>
-            </Card>
-            
-            <Button label="Adicionar lançamento" onClick={() => alert("Em breve")}></Button>
+            </Card>            
 
             <br />
 
-            <Link to={"/entries"}>Ver lançamentos</Link>
+            <Link to={"/entries"}>
+                <Button label="Ver lançamentos"></Button>
+            </Link>
             
         </MainLayout>
     );
