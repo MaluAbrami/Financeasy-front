@@ -5,6 +5,7 @@ import { userApi } from "../api/userApi";
 import styles from "./LoginPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../utils/AuthContext";
+import { LoginButton } from "../components/Button/LoginButton";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
@@ -54,10 +55,13 @@ export function LoginPage() {
               required
             />
           </div>
-          <div>
-            <Button label="Entrar" type="submit" />
+          <div className={styles.linkContainer}>
+            <a href="">Esqueci minha senha</a>
           </div>
-          <Link to={"/register"}>Não possui uma conta? Cadastre-se</Link>
+          <div>
+            <LoginButton label="Entrar" type="submit" />
+          </div>
+          <Link to={"/register"}>Ainda não tenho uma conta</Link>
         </form>
       </div>
     </div>

@@ -61,3 +61,12 @@ h1 {
     align-items: center;
     text-align: center;
 }
+
+.linkContainer {
+    display: flex;
+    justify-content: right;
+    align-items: end;
+    text-align: right;
+    width: 65%;
+    margin-bottom: 50px;
+}

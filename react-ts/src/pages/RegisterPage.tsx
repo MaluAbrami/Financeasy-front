@@ -4,6 +4,7 @@ import { Button } from "../components/Button/Button";
 import { userApi } from "../api/userApi";
 import styles from "./RegisterPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
+import { LoginButton } from "../components/Button/LoginButton";
 
 export function RegisterPage() {
   const [email, setEmail] = useState("");
@@ -48,8 +49,8 @@ export function RegisterPage() {
               required
             />
           </div>
-          <div>
-            <Button label="Enviar" type="submit" />
+          <div className={styles.containerButton}>
+            <LoginButton label="Enviar" type="submit" />
           </div>
           <Link to={"/login"}>Já possui uma conta? Entre agora</Link>
         </form>
