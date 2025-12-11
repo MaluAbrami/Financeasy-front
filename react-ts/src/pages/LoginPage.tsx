@@ -30,38 +30,36 @@ export function LoginPage() {
   }
 
   return (
-    <MainLayout>
-      <div className={styles.principalContainer}>
-        <div className={styles.loginCard}>
-          <h1>Login</h1>
-          <form onSubmit={handleLogin}>
-            <div>
-              <label>Email</label>
-              <br />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <label>Senha</label>
-              <br />
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
-            <div>
-              <Button label="Entrar" type="submit" />
-            </div>
-            <Link to={"/register"}>Não possui uma conta? Cadastre-se</Link>
-          </form>
-        </div>
+    <div className={styles.principalContainer}>
+      <div className={styles.loginCard}>
+        <h1>Faça seu Login</h1>
+        <form onSubmit={handleLogin}>
+          <div>
+            <label>Email</label>
+            <br />
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <label>Senha</label>
+            <br />
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <div>
+            <Button label="Entrar" type="submit" />
+          </div>
+          <Link to={"/register"}>Não possui uma conta? Cadastre-se</Link>
+        </form>
       </div>
-    </MainLayout>
+    </div>
   );
 }

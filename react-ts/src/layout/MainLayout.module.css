@@ -2,6 +2,9 @@
     height: 100vh; 
     display: flex; 
     flex-direction: column;
+    background-image: url("https://wallpapers.com/images/hd/4k-ultra-hd-galaxy-violet-clouds-13597ri09s5378hu.jpg");
+    background-size: cover;
+    background-position: center;
 }
 
 header {

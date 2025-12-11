@@ -11,8 +11,8 @@ export function UserPage() {
 
     return (
         <MainLayout>
-            <Card>
-                <div className={styles.container}>
+            <div className={styles.container}>
+                <div className={styles.cardContainer}>
                     <div className={styles.userContainer}>
                         <div className={styles.imageContainer}>
                             <img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" alt="" />
@@ -27,7 +27,7 @@ export function UserPage() {
                         <Button label="Sair" onClick={() => logout()}></Button>
                     </div>
                 </div>
-            </Card>
+            </div>
         </MainLayout>
     )
 }

@@ -32,9 +32,9 @@ export function NewEntryPage() {
   return (
     <MainLayout>
       <div className={styles.container}>
-        <h1>Novo Lançamento</h1>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.allFormsContainer}>
+            <h1>Novo Lançamento</h1>
             <div className={styles.formContainer}>
               <label>Categoria</label>
               <input

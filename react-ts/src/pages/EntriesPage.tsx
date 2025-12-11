@@ -14,44 +14,47 @@ import { Trash, Pencil } from "lucide-react";
 export function EntriesPage() {
   const [entries, setEntries] = useState<FinancialEntryViewModel[]>([]);
 
-useEffect(() => {
-  financialEntryApi.list().then((res) => {
-    const list: FinancialEntryViewModel[] =
-      res.data.financialsByUser.map((entry) => ({
-        id: entry.id!,
-        amount: entry.amount,
-        category: entry.category,
-        description: entry.description,
-        date: new Date(entry.date.split("T")[0]).toLocaleDateString("pt-BR"),
-        type: entry.type === EntryType.Expense ? "Saída" : "Entrada",
-        isFixed: entry.isFixed ? "Sim" : "Não",
-        actions: (
-          <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
-            <Link to={"/entries/update"} state={{ entry }}>
+  useEffect(() => {
+    financialEntryApi.list().then((res) => {
+      const list: FinancialEntryViewModel[] = res.data.financialsByUser.map(
+        (entry) => ({
+          id: entry.id!,
+          amount: entry.amount,
+          category: entry.category,
+          description: entry.description,
+          date: new Date(entry.date.split("T")[0]).toLocaleDateString("pt-BR"),
+          type: entry.type === EntryType.Expense ? "Saída" : "Entrada",
+          isFixed: entry.isFixed ? "Sim" : "Não",
+          actions: (
+            <div
+              style={{ display: "flex", gap: "8px", justifyContent: "center" }}
+            >
+              <Link to={"/entries/update"} state={{ entry }}>
+                <TableActionButton
+                  icon={<Pencil size={18} />}
+                  tooltip="Editar"
+                />
+              </Link>
+
               <TableActionButton
-                icon={<Pencil size={18} />}
-                tooltip="Editar"
+                icon={<Trash size={18} />}
+                onClick={() => handleDelete(entry.id!)}
+                tooltip="Excluir"
+                className="delete"
               />
-            </Link>
+            </div>
+          ),
+        })
+      );
 
-            <TableActionButton
-              icon={<Trash size={18} />}
-              onClick={() => handleDelete(entry.id!)}
-              tooltip="Excluir"
-              className="delete"
-            />
-          </div>
-        )
-      }));
-
-    setEntries(list);
-  });
-}, []);
+      setEntries(list);
+    });
+  }, []);
 
   const handleDelete = async (id: string) => {
     await financialEntryApi.delete(id);
-    setEntries((prev) => prev.filter((e) => e.id != id))
-  }
+    setEntries((prev) => prev.filter((e) => e.id != id));
+  };
 
   const columns = [
     { label: "Identificador", key: "id" },
@@ -61,21 +64,23 @@ useEffect(() => {
     { label: "Data", key: "date" },
     { label: "Tipo", key: "type" },
     { label: "Fixo", key: "isFixed" },
-    { label: "Ações", key: "actions" }
+    { label: "Ações", key: "actions" },
   ];
 
   return (
     <MainLayout>
-      <div className={styles.topContainer}>
-        <h1>Lançamentos</h1>
-        <Link to={"/entries/new"}>
-          <Button label="Novo lançamento" />
-        </Link>
-      </div>
+      <div className={styles.container}>
+        <div className={styles.topContainer}>
+          <h1>Lançamentos</h1>
+          <Link to={"/entries/new"}>
+            <Button label="Novo lançamento" />
+          </Link>
+        </div>
 
-      <Card>
-        <Table columns={columns} data={entries}></Table>
-      </Card>
+        <div className={styles.tableContainer}>
+          <Table columns={columns} data={entries}></Table>
+        </div>
+      </div>
     </MainLayout>
   );
 }

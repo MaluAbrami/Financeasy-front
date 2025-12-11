@@ -1,0 +1,11 @@
+div {
+    color: white;
+}
+
+.topContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 15px;
+}
