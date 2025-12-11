@@ -18,12 +18,15 @@ export function NewEntryPage() {
     e.preventDefault();
     
     try {
-      const dateIso = date.toString();
-
       financialEntryApi.create({amount, category, description, date, type, isFixed});
 
       alert("Lançamento cadastrado!");
-      
+      setDescription("");
+      setCategory("");
+      setType(EntryType.Expense);
+      setIsFixed(false);
+      setAmount(0);
+      setDate("");
     } catch (e) {
       alert("Ocorreu um erro");
     }
