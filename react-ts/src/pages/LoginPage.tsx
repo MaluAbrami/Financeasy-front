@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { MainLayout } from "../layout/MainLayout";
 import { Button } from "../components/Button/Button";
 import { userApi } from "../api/userApi";
 import styles from "./LoginPage.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../utils/AuthContext";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -18,8 +21,9 @@ export function LoginPage() {
       const token = response.data;
 
       localStorage.setItem("authToken", token);
+      login();
 
-      alert("Login realizado com sucesso!");
+      navigate("/home");
     } catch (error) {
       alert("Credenciais inválidas ou erro no login.");
     }

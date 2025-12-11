@@ -5,17 +5,50 @@ import { NewEntryPage } from "../pages/NewEntryPage.tsx";
 import { LoginPage } from "../pages/LoginPage.tsx";
 import { RegisterPage } from "../pages/RegisterPage.tsx";
 import { UpdateEntryPage } from "../pages/UpdateEntryPage.tsx";
+import { PrivateRoute } from "./PrivateRoute.tsx";
 
 export function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={< HomePage />} />
-                <Route path="/entries" element={< EntriesPage /> }></Route>
-                <Route path="/entries/new" element={<NewEntryPage/>}></Route>
-                <Route path="/login" element={<LoginPage/>}></Route>
-                <Route path="/register" element={<RegisterPage/>}></Route>
-                <Route path="/entries/update" element={<UpdateEntryPage/>}></Route>
+                <Route path="/home" 
+                    element={
+                        <PrivateRoute>
+                            <HomePage />
+                        </PrivateRoute>
+                    } 
+                />
+                <Route path="/entries" 
+                    element={
+                        <PrivateRoute>
+                            < EntriesPage /> 
+                        </PrivateRoute>
+                    }>
+                </Route>
+                <Route path="/entries/new" 
+                    element={
+                        <PrivateRoute>
+                            < NewEntryPage /> 
+                        </PrivateRoute>
+                    }>
+                </Route>
+                <Route path="/entries/update" 
+                    element={
+                        <PrivateRoute>
+                            < UpdateEntryPage /> 
+                        </PrivateRoute>
+                    }>
+                </Route>
+                <Route path="/login" 
+                    element={
+                        <LoginPage/>
+                    }>   
+                </Route>
+                <Route path="/register" 
+                    element={
+                        <RegisterPage/>
+                    }>
+                </Route>
             </Routes>
         </BrowserRouter>
     );
