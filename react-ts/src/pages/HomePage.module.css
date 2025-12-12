@@ -2,10 +2,39 @@ div {
     color: white;
 }
 
+.container {
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
 .topContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    margin: 15px;
+}
+
+.bottomContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.dashboardsContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+    height: 15vh;
+    border-radius: 12px;
+}
+
+.balanceEvolution {
+    gap: 15px;
+    width: 100%;
+    height: auto;
 }

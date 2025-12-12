@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HomePage } from "../pages/HomePage.tsx";
 import { EntriesPage } from "../pages/EntriesPage.tsx";
 import { NewEntryPage } from "../pages/NewEntryPage.tsx";
@@ -12,6 +12,7 @@ export function AppRoutes() {
     return (
         <BrowserRouter>
             <Routes>
+                <Route path="/" element={<Navigate to="/login" replace />} />
                 <Route path="/home" 
                     element={
                         <PrivateRoute>
@@ -57,6 +58,7 @@ export function AppRoutes() {
                         </PrivateRoute>
                     }>
                 </Route>
+                <Route path="*" element={<Navigate to="/login" replace />} />
             </Routes>
         </BrowserRouter>
     );
