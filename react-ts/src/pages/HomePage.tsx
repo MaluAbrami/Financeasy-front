@@ -18,7 +18,7 @@ export function HomePage() {
     const [initialYear, setInitialYear] = useState<number>(date.getFullYear());
     const [initialMonth, setInitialMonth] = useState<number>(1);
     const [endYear, endInitialYear] = useState<number>(date.getFullYear());
-    const [endMonth, setEndMonth] = useState<number>(12);
+    const [endMonth, setEndMonth] = useState<number>(date.getMonth() + 1);
 
     const [balanceEvolution, setBalanceEvolution] = useState<GetBalanceEvolutionResponse>({
         balances: []
