@@ -29,7 +29,6 @@ div {
     align-items: center;
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);
-    height: 15vh;
     border-radius: 12px;
 }
 

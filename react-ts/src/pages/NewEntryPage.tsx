@@ -1,30 +1,46 @@
 import { MainLayout } from "../layout/MainLayout";
 import { Button } from "../components/Button/Button.tsx";
-import { useState, type FormEvent, type ChangeEvent } from "react";
+import { useState, type FormEvent, type ChangeEvent, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { financialEntryApi } from "../api/financialEntryApi.ts";
 import styles from "./NewEntryPage.module.css";
-import { EntryType } from "../types/EntryType.ts";
+import { categoryApi } from "../api/categoryApi.ts";
+
+type Category = {
+  id: string;
+  name: string;
+};
 
 export function NewEntryPage() {
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [type, setType] = useState<EntryType>(EntryType.Expense);
-  const [isFixed, setIsFixed] = useState(false);
+  const [categoryId, setCategoryId] = useState("");
   const [amount, setAmount] = useState(0);
   const [date, setDate] = useState("");
 
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    async function loadCategories() {
+      try {
+        const response = await categoryApi.list();
+        setCategories(response.data.categorys);
+      } catch {
+        alert("Erro ao carregar categorias");
+      }
+    }
+
+    loadCategories();
+  }, []);
+
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    
+
     try {
-      financialEntryApi.create({amount, category, description, date, type, isFixed});
+      financialEntryApi.create({ amount, description, date, categoryId });
 
       alert("Lançamento cadastrado!");
       setDescription("");
-      setCategory("");
-      setType(EntryType.Expense);
-      setIsFixed(false);
+      setCategoryId("");
       setAmount(0);
       setDate("");
     } catch (e) {
@@ -40,15 +56,21 @@ export function NewEntryPage() {
             <h1>Novo Lançamento</h1>
             <div className={styles.formContainer}>
               <label>Categoria</label>
-              <input
-                type="text"
-                value={category}
-                onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                  setCategory(e.target.value)
+              <select
+                value={categoryId}
+                onChange={(e: ChangeEvent<HTMLSelectElement>) =>
+                  setCategoryId(e.target.value)
                 }
-                placeholder="Informe a categoria do registro para facilitar buscas"
                 required
-              />
+              >
+                <option value="">Selecione uma categoria</option>
+
+                {categories!.map((category) => (
+                  <option key={category.id} value={category.id}>
+                    {category.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className={styles.formContainer}>
               <label>Valor</label>
@@ -64,17 +86,18 @@ export function NewEntryPage() {
             </div>
             <div className={styles.formContainer}>
               <label>Data</label>
-              <input 
+              <input
                 type="date"
-                name="date" 
+                name="date"
                 value={date}
-                onChange={(e : ChangeEvent<HTMLInputElement>) => 
-                  setDate(e.target.value)}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setDate(e.target.value)
+                }
                 required
-                />
+              />
             </div>
 
-            <div className={styles.formContainer}>
+            {/* <div className={styles.formContainer}>
               <label>Tipo</label>
               <label className={styles.radioLabel}>
                 <input
@@ -120,7 +143,7 @@ export function NewEntryPage() {
                 />
                 <span>Não</span>
               </label>
-            </div>
+            </div> */}
             <div className={styles.formContainer}>
               <label>Descrição</label>
               <input

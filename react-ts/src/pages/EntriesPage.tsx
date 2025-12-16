@@ -20,7 +20,7 @@ export function EntriesPage() {
         (entry) => ({
           id: entry.id!,
           amount: entry.amount,
-          category: entry.category,
+          categoryName: entry.categoryName,
           description: entry.description,
           date: new Date(entry.date).toLocaleDateString("pt-BR"),
           type: entry.type === EntryType.Expense ? "Saída" : "Entrada",
@@ -59,7 +59,7 @@ export function EntriesPage() {
   const columns = [
     { label: "Identificador", key: "id" },
     { label: "Valor", key: "amount" },
-    { label: "Categoria", key: "category" },
+    { label: "Categoria", key: "categoryName" },
     { label: "Descrição", key: "description" },
     { label: "Data", key: "date" },
     { label: "Tipo", key: "type" },

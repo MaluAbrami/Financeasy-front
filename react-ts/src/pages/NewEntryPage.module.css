@@ -31,6 +31,11 @@
     flex-direction: column;
 }
 
+select {
+  padding: 15px;
+  border-radius: 8px;
+}
+
 .radioLabel {
   display: flex;
   align-items: center;
