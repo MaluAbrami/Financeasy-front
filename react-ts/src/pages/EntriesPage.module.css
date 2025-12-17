@@ -16,6 +16,11 @@
     width: 90%;
 }
 
+.buttonsContainer {
+    display: flex;
+    gap: 20px;
+}
+
 .tableContainer {
     background-color: rgba(0, 0, 0, 0.6);
     backdrop-filter: blur(10px);

@@ -72,9 +72,18 @@ export function EntriesPage() {
       <div className={styles.container}>
         <div className={styles.topContainer}>
           <h1>Lançamentos</h1>
-          <Link to={"/entries/new"}>
-            <Button label="Novo lançamento" />
-          </Link>
+          <div className={styles.buttonsContainer}>
+            <div>
+              <Link to={"/entries/new"}>
+                <Button label="Novo lançamento" />
+              </Link>
+            </div>
+            <div>
+              <Link to={"/category/new"}>
+                <Button label="Nova Categoria" />
+              </Link>
+            </div>
+          </div>
         </div>
 
         <div className={styles.tableContainer}>
