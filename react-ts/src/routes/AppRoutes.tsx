@@ -8,6 +8,7 @@ import { UpdateEntryPage } from "../pages/UpdateEntryPage.tsx";
 import { PrivateRoute } from "./PrivateRoute.tsx";
 import { UserPage } from "../pages/UserPage.tsx";
 import { NewCategoryPage } from "../pages/NewCategoryPage.tsx";
+import { CategoriesPage } from "../pages/CategoriesPage.tsx";
 
 export function AppRoutes() {
     return (
@@ -39,6 +40,13 @@ export function AppRoutes() {
                     element={
                         <PrivateRoute>
                             < UpdateEntryPage /> 
+                        </PrivateRoute>
+                    }>
+                </Route>
+                <Route path="/categories" 
+                    element={
+                        <PrivateRoute>
+                            < CategoriesPage /> 
                         </PrivateRoute>
                     }>
                 </Route>

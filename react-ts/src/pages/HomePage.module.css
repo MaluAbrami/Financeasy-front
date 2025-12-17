@@ -16,6 +16,11 @@ div {
     align-items: center;
 }
 
+.buttonsContainer {
+    display: flex;
+    gap: 20px;
+}
+
 .bottomContainer {
     display: flex;
     flex-direction: column;

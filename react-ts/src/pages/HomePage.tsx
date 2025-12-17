@@ -49,9 +49,18 @@ export function HomePage() {
                         <h1>Dashboard Financeiro</h1>
                         <p>Bem-vindo(a) ao seu controle financeiro pessoal!</p>
                     </div>
-                    <Link to={"/entries"}>
-                        <Button label="Ver lançamentos"></Button>
-                    </Link>
+                    <div className={styles.buttonsContainer}>
+                        <div>
+                            <Link to={"/entries"}>
+                                <Button label="Ver lançamentos"></Button>
+                            </Link>
+                        </div>
+                        <div>
+                            <Link to={"/categories"}>
+                                <Button label="Ver categorias"></Button>
+                            </Link>
+                        </div>
+                    </div>
                 </div>
 
                 <div className={styles.bottomContainer}>
