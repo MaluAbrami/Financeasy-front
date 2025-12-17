@@ -2,10 +2,11 @@ import { http } from "./httpClient";
 import type { FinancialEntry } from "../types/FinancialEntry.ts";
 import type { GetAllFinancialEntrysByUser } from "../types/GetAllFinancialEntrysByUser.ts";
 import type { CreateFinancialEntryRequest } from "../types/CreateFinancialEntryRequest.ts";
-import { useParams } from "react-router-dom";
+import type { FinancialEntryOrderBy } from "../types/FinancialEntryOrderBy.ts";
+import type { SortDirection } from "../types/SortDirection.ts";
 
 export const financialEntryApi = {
-  list: () => http.get<GetAllFinancialEntrysByUser>("/financial-entry/all-by-user"),
+  list: (page: number, pageSize: number, orderBy: FinancialEntryOrderBy, direction: SortDirection) => http.get<GetAllFinancialEntrysByUser>(`/financial-entry/all-by-user/${page}/${pageSize}/${orderBy}/${direction}`),
 
   getById: (id: string) =>
     http.get<FinancialEntry>(`/financial-entry`, {

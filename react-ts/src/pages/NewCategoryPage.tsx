@@ -232,9 +232,7 @@ export function NewCategoryPage() {
             )}
 
             <div className={styles.buttonContainer}>
-              <Link to={"/entries"}>
-                <Button type="button" label="Voltar" />
-              </Link>
+              <Button type="button" label="Voltar" onClick={() => navigate(-1)} />
               <Button type="submit" label="Salvar" />
             </div>
           </div>

@@ -8,6 +8,8 @@ import styles from "./EntriesPage.module.css";
 import { EntryType } from "../types/EntryType";
 import { TableActionButton } from "../components/Table/TableActionButton";
 import { Trash, Pencil } from "lucide-react";
+import { CategoryOrderBy } from "../types/CategoryOrderBy";
+import { SortDirection } from "../types/SortDirection";
 
 interface CategoryViewModel {
   id: string;
@@ -20,8 +22,15 @@ interface CategoryViewModel {
 export function CategoriesPage() {
   const [categories, setCategories] = useState<CategoryViewModel[]>([]);
 
+  const[page, setPage] = useState<number>(1);
+  const[pageSize, setPageSize] = useState<number>(10);
+  const[orderBy, setOrderBy] = useState<CategoryOrderBy>(CategoryOrderBy.Name);
+  const[direction, setDirection] = useState<SortDirection>(SortDirection.Asc);
+  const[totalItems, setTotalItems] = useState<number>(0);
+  const[totalPages, setTotalPages] = useState<number>(1);
+
   useEffect(() => {
-    categoryApi.list().then((res) => {
+    categoryApi.list(page, pageSize, orderBy, direction).then((res) => {
       const list: CategoryViewModel[] = res.data.categorys.map((category) => ({
         id: category.id,
         name: category.name,
@@ -46,8 +55,9 @@ export function CategoriesPage() {
       }));
 
       setCategories(list);
+      setTotalPages(res.data.pagination.totalPages);
     });
-  }, []);
+  }, [page]);
 
   const handleDelete = async (id: string) => {
     await categoryApi.delete(id);
@@ -78,6 +88,21 @@ export function CategoriesPage() {
 
         <div className={styles.tableContainer}>
           <Table columns={columns} data={categories}></Table>
+        </div>
+        <div className={styles.pagination}>
+          <Button
+            label="Anterior"
+            onClick={() => setPage((p) => Math.max(p - 1, 1))}
+          />
+
+          <span>
+            Página {page} de {totalPages}
+          </span>
+
+          <Button
+            label="Próxima"
+            onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
+          />
         </div>
       </div>
     </MainLayout>
