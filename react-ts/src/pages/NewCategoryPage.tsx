@@ -4,20 +4,21 @@ import { MainLayout } from "../layout/MainLayout";
 import { Button } from "../components/Button/Button";
 import { categoryApi } from "../api/categoryApi";
 import styles from "./NewEntryPage.module.css";
+import { EntryType } from "../types/EntryType";
+import { Frequency } from "../types/Frequency";
+import { AdjustmentRule } from "../types/AdjustmentRule";
 
 export function NewCategoryPage() {
   const navigate = useNavigate();
 
-  // Campos principais
   const [name, setName] = useState("");
-  const [type, setType] = useState<number>(0); // 0 = Expense, 1 = Income
+  const [type, setType] = useState<EntryType>(EntryType.Expense);
   const [isFixed, setIsFixed] = useState<boolean>(false);
 
-  // Campos de recorrência (só aparecem quando isFixed = true)
-  const [frequency, setFrequency] = useState<number>(0);
+  const [frequency, setFrequency] = useState<Frequency>(Frequency.Monthly);
   const [dayOfMonth, setDayOfMonth] = useState<number>(1);
   const [dayOfWeek, setDayOfWeek] = useState<number>(0);
-  const [adjustmentRule, setAdjustmentRule] = useState<number>(0);
+  const [adjustmentRule, setAdjustmentRule] = useState<AdjustmentRule>(AdjustmentRule.Exact);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [amount, setAmount] = useState<number>(0);
@@ -79,9 +80,9 @@ export function NewCategoryPage() {
                 <input
                   type="radio"
                   name="type"
-                  value={0}
-                  checked={type === 0}
-                  onChange={() => setType(0)}
+                  value={EntryType.Expense}
+                  checked={type === EntryType.Expense}
+                  onChange={() => setType(EntryType.Expense)}
                   required
                 />
                 <span>Despesa</span>
@@ -90,9 +91,9 @@ export function NewCategoryPage() {
                 <input
                   type="radio"
                   name="type"
-                  value={1}
-                  checked={type === 1}
-                  onChange={() => setType(1)}
+                  value={EntryType.Income}
+                  checked={type === EntryType.Income}
+                  onChange={() => setType(EntryType.Income)}
                 />
                 <span>Receita</span>
               </label>
@@ -129,18 +130,17 @@ export function NewCategoryPage() {
                   <select
                     value={frequency}
                     onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                      setFrequency(Number(e.target.value))
+                      setFrequency(e.target.value as Frequency)
                     }
                     required
                   >
-                    <option value={0}>Diária</option>
-                    <option value={1}>Semanal</option>
-                    <option value={2}>Mensal</option>
-                    <option value={3}>Anual</option>
+                    <option value={Frequency.Weekly}>Semanal</option>
+                    <option value={Frequency.Monthly}>Mensal</option>
+                    <option value={Frequency.Yearly}>Anual</option>
                   </select>
                 </div>
 
-                {frequency === 2 && (
+                {frequency === Frequency.Monthly && (
                   <div className={styles.formContainer}>
                     <label>Dia do Mês</label>
                     <input
@@ -156,7 +156,7 @@ export function NewCategoryPage() {
                   </div>
                 )}
 
-                {frequency === 1 && (
+                {frequency === Frequency.Weekly && (
                   <div className={styles.formContainer}>
                     <label>Dia da Semana</label>
                     <select
@@ -182,12 +182,13 @@ export function NewCategoryPage() {
                   <select
                     value={adjustmentRule}
                     onChange={(e: ChangeEvent<HTMLSelectElement>) =>
-                      setAdjustmentRule(Number(e.target.value))
+                      setAdjustmentRule(e.target.value as AdjustmentRule)
                     }
                   >
-                    <option value={0}>Nenhuma</option>
-                    <option value={1}>Próximo dia útil</option>
-                    <option value={2}>Dia útil anterior</option>
+                    <option value={AdjustmentRule.Exact}>Dia exato</option>
+                    <option value={AdjustmentRule.FifthBusinessDay}>Quinto dia útil</option>
+                    <option value={AdjustmentRule.LastBusinessDay}>Último dia útil</option>
+                    <option value={AdjustmentRule.LastDayOfMonth}>Último dia do mês</option>
                   </select>
                 </div>
 
