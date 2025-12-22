@@ -96,54 +96,6 @@ export function NewEntryPage() {
                 required
               />
             </div>
-
-            {/* <div className={styles.formContainer}>
-              <label>Tipo</label>
-              <label className={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="type"
-                  value= "EntryType.Income"
-                  checked={type === EntryType.Income}
-                  onChange={() => setType(EntryType.Income)}
-                  required
-                />
-                <span>Entrada</span>
-              </label>
-              <label className={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="type"
-                  value="EntryType.Expense"
-                  checked={type === EntryType.Expense}
-                  onChange={() => setType(EntryType.Expense)}
-                />
-                <span>Saída</span>
-              </label>
-            </div>
-            <div className={styles.formContainer}>
-              <label>Fixo</label>
-              <label className={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="isFixed"
-                  value="true"
-                  checked={isFixed === true}
-                  onChange={() => setIsFixed(true)}
-                />
-                <span>Sim</span>
-              </label>
-              <label className={styles.radioLabel}>
-                <input
-                  type="radio"
-                  name="isFixed"
-                  value="false"
-                  checked={isFixed === false}
-                  onChange={() => setIsFixed(false)}
-                />
-                <span>Não</span>
-              </label>
-            </div> */}
             <div className={styles.formContainer}>
               <label>Descrição</label>
               <input

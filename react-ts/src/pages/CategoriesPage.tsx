@@ -30,7 +30,7 @@ export function CategoriesPage() {
   const[totalPages, setTotalPages] = useState<number>(1);
 
   useEffect(() => {
-    categoryApi.list(page, pageSize, orderBy, direction).then((res) => {
+    categoryApi.listPaged(page, pageSize, orderBy, direction).then((res) => {
       const list: CategoryViewModel[] = res.data.categorys.map((category) => ({
         id: category.id,
         name: category.name,
