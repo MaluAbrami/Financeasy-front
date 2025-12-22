@@ -9,18 +9,26 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  box-sizing: border-box;
+  color: rgb(70, 130, 180);
   transition: background 0.2s ease;
+}
+
+.tableActionBtn svg {
+  width: 18px;
+  height: 18px;
+  display: block;
 }
 
 .tableActionBtn:hover {
   background: #d5d5d5;
 }
 
-.delete {
+.tableActionBtn.delete {
   background: #ff4d4d;
   color: white;
 }
 
-.delete:hover {
+.tableActionBtn.delete:hover {
   background: #e03d3d;
 }

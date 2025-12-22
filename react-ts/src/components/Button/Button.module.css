@@ -1,5 +1,5 @@
 .button {
-    background-color: #2D2E32;
+    background-color: rgb(70, 130, 180);
     color: white;
     padding: 12px 48px;
     border-radius: 6px;
@@ -11,6 +11,6 @@
 }
 
 .button:hover {
-    background-color: #3D3E42;
+    background-color: rgb(50, 110, 160);
     transform: scale(1.05);
 }

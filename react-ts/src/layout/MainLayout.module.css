@@ -2,9 +2,10 @@
     height: 100vh; 
     display: flex; 
     flex-direction: column;
-    background-image: url("https://wallpapers.com/images/hd/4k-ultra-hd-galaxy-violet-clouds-13597ri09s5378hu.jpg");
-    background-size: cover;
-    background-position: center;
+    /* background-image: url("https://wallpapers.com/images/hd/4k-ultra-hd-galaxy-violet-clouds-13597ri09s5378hu.jpg"); */
+    background-color: white;
+    /* background-size: cover;
+    background-position: center; */
 }
 
 header {
@@ -12,7 +13,7 @@ header {
     flex-direction: row;
     justify-content: space-between;
     height: 8vh;
-    background-color: #2D2E32;
+    background-color: rgb(70, 130, 180);
     color: white;
     align-items: center;
     padding: 0 20px;

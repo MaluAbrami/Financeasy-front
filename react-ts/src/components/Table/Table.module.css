@@ -1,29 +1,46 @@
 table {
     width: 100%;
-    border-collapse: collapse;
-    /* background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px); */
-    background-color: none;
-    border-radius: 8px;
+    background-color: transparent;
+    border: 1px solid rgb(70, 130, 180);
+    border-radius: 18px;
     overflow: hidden;
+    border-collapse: separate; 
+    border-spacing: 0
 }
 
 th {
     text-align: center;
     padding: 12px;
-    background-color: #2D2E32;
+    background-color: rgb(70, 130, 180);
     color: white;
     font-weight: 600;
+    border-bottom: 1px solid rgb(70, 130, 180);
+    vertical-align: middle;
+    height: 100%;
 }
 
-tr {
-    border-bottom: 1px solid #eee;
+th:first-child {
+    border-top-left-radius: 18px;
+}
+
+th:last-child {
+    border-top-right-radius: 18px;
+}
+
+tr:last-child td:first-child {
+    border-bottom-left-radius: 18px;
+}
+
+tr:last-child td:last-child {
+    border-bottom-right-radius: 18px;
 }
 
 td {
     text-align: center;
     padding: 12px;
-    color: white;
+    color: rgb(70, 130, 180);
+    border-bottom: 1px solid rgb(70, 130, 180);
+    vertical-align: middle;
 }
 
 .actionsCell {

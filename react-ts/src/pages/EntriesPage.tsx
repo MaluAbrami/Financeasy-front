@@ -66,7 +66,7 @@ export function EntriesPage() {
         type: entry.type === EntryType.Expense ? "Saída" : "Entrada",
         isFixed: entry.isFixed ? "Sim" : "Não",
         actions: (
-          <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
+          <div className={styles.actionsCell}>
             <Link to={"/entries/update"} state={{ entry }}>
               <TableActionButton icon={<Pencil size={18} />} tooltip="Editar" />
             </Link>

@@ -72,7 +72,9 @@ export function HomePage() {
                     </div>
                     <div className={`${styles.dashboardsContainer} ${styles.balanceEvolution}`}>
                         <h2>Evolução de Saldo entre o período de {initialMonth}/{initialYear} e {endMonth}/{endYear}</h2>
-                        <Table columns={columns} data={balanceEvolution.balances}></Table>
+                        <div className={styles.tableWrapper}>
+                            <Table columns={columns} data={balanceEvolution.balances}></Table>
+                        </div>
                     </div>
                 </div>
             </div>     
