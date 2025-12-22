@@ -56,7 +56,32 @@ export function EntriesPage() {
 
   const handleDelete = async (id: string) => {
     await financialEntryApi.delete(id);
-    setEntries((prev) => prev.filter((e) => e.id != id));
+    financialEntryApi.list(page, pageSize, orderBy, direction).then((res) => {
+      const list: FinancialEntryViewModel[] = res.data.financialsByUser.map((entry) => ({
+        id: entry.id!,
+        amount: entry.amount,
+        categoryName: entry.categoryName,
+        description: entry.description,
+        date: new Date(entry.date).toLocaleDateString("pt-BR"),
+        type: entry.type === EntryType.Expense ? "Saída" : "Entrada",
+        isFixed: entry.isFixed ? "Sim" : "Não",
+        actions: (
+          <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
+            <Link to={"/entries/update"} state={{ entry }}>
+              <TableActionButton icon={<Pencil size={18} />} tooltip="Editar" />
+            </Link>
+            <TableActionButton
+              icon={<Trash size={18} />}
+              onClick={() => handleDelete(entry.id!)}
+              tooltip="Excluir"
+              className="delete"
+            />
+          </div>
+        ),
+      }));
+      setEntries(list);
+      setTotalPages(res.data.pagination.totalPages);
+    });
   };
 
   const columns = [
