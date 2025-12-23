@@ -10,6 +10,7 @@ import { TableActionButton } from "../components/Table/TableActionButton";
 import { Trash, Pencil } from "lucide-react";
 import { CategoryOrderBy } from "../types/CategoryOrderBy";
 import { SortDirection } from "../types/SortDirection";
+import { CreateCategoryModal } from "../components/Category/CreateCategoryModal";
 
 interface CategoryViewModel {
   id: string;
@@ -28,8 +29,9 @@ export function CategoriesPage() {
   const[direction, setDirection] = useState<SortDirection>(SortDirection.Asc);
   const[totalItems, setTotalItems] = useState<number>(0);
   const[totalPages, setTotalPages] = useState<number>(1);
+  const [openCategoryModal, setOpenCategoryModal] = useState(false);
 
-  useEffect(() => {
+  function loadCategories() {
     categoryApi.listPaged(page, pageSize, orderBy, direction).then((res) => {
       const list: CategoryViewModel[] = res.data.categorys.map((category) => ({
         id: category.id,
@@ -37,13 +39,10 @@ export function CategoriesPage() {
         type: category.type === EntryType.Expense ? "Despesa" : "Receita",
         isFixed: category.isFixed ? "Sim" : "Não",
         actions: (
-          <div
-            style={{ display: "flex", gap: "8px", justifyContent: "center" }}
-          >
+          <div style={{ display: "flex", gap: "8px", justifyContent: "center" }}>
             <Link to={"/category/update"} state={{ category }}>
               <TableActionButton icon={<Pencil size={18} />} tooltip="Editar" />
             </Link>
-
             <TableActionButton
               icon={<Trash size={18} />}
               onClick={() => handleDelete(category.id)}
@@ -53,10 +52,13 @@ export function CategoriesPage() {
           </div>
         ),
       }));
-
       setCategories(list);
       setTotalPages(res.data.pagination.totalPages);
     });
+  }
+
+  useEffect(() => {
+    loadCategories();
   }, [page]);
 
   const handleDelete = async (id: string) => {
@@ -79,9 +81,7 @@ export function CategoriesPage() {
           <h1>Categorias</h1>
           <div className={styles.buttonsContainer}>
             <div>
-              <Link to={"/category/new"}>
-                <Button label="Nova Categoria" />
-              </Link>
+              <Button label="Nova Categoria" onClick={() => setOpenCategoryModal(true)} />
             </div>
           </div>
         </div>
@@ -105,6 +105,11 @@ export function CategoriesPage() {
           />
         </div>
       </div>
+      <CreateCategoryModal
+        isOpen={openCategoryModal}
+        onClose={() => setOpenCategoryModal(false)}
+        onCreated={loadCategories}
+      />
     </MainLayout>
   );
 }

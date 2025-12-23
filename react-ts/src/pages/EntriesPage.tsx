@@ -12,6 +12,8 @@ import { TableActionButton } from "../components/Table/TableActionButton";
 import { Trash, Pencil } from "lucide-react";
 import { FinancialEntryOrderBy } from "../types/FinancialEntryOrderBy";
 import { SortDirection } from "../types/SortDirection";
+import { CreateEntryModal } from "../components/Entry/CreateEntryModal";
+import { CreateCategoryModal } from "../components/Category/CreateCategoryModal";
 
 export function EntriesPage() {
   const [entries, setEntries] = useState<FinancialEntryViewModel[]>([]);
@@ -22,8 +24,10 @@ export function EntriesPage() {
   const[direction, setDirection] = useState<SortDirection>(SortDirection.Asc);
   const[totalItems, setTotalItems] = useState<number>(0);
   const[totalPages, setTotalPages] = useState<number>(1);
+  const [openEntryModal, setOpenEntryModal] = useState(false);
+  const [openCategoryModal, setOpenCategoryModal] = useState(false);
 
-  useEffect(() => {
+  function loadEntries() {
     financialEntryApi.list(page, pageSize, orderBy, direction).then((res) => {
       const list: FinancialEntryViewModel[] = res.data.financialsByUser.map((entry) => ({
         id: entry.id!,
@@ -38,7 +42,6 @@ export function EntriesPage() {
             <Link to={"/entries/update"} state={{ entry }}>
               <TableActionButton icon={<Pencil size={18} />} tooltip="Editar" />
             </Link>
-
             <TableActionButton
               icon={<Trash size={18} />}
               onClick={() => handleDelete(entry.id!)}
@@ -48,10 +51,13 @@ export function EntriesPage() {
           </div>
         ),
       }));
-      
       setEntries(list);
       setTotalPages(res.data.pagination.totalPages);
     });
+  }
+
+  useEffect(() => {
+    loadEntries();
   }, [page]);
 
   const handleDelete = async (id: string) => {
@@ -102,14 +108,10 @@ export function EntriesPage() {
           <h1>Lançamentos</h1>
           <div className={styles.buttonsContainer}>
             <div>
-              <Link to={"/entries/new"}>
-                <Button label="Novo lançamento" />
-              </Link>
+              <Button label="Novo lançamento" onClick={() => setOpenEntryModal(true)} />
             </div>
             <div>
-              <Link to={"/category/new"}>
-                <Button label="Nova Categoria" />
-              </Link>
+              <Button label="Nova Categoria" onClick={() => setOpenCategoryModal(true)} />
             </div>
           </div>
         </div>
@@ -133,6 +135,16 @@ export function EntriesPage() {
             />
         </div>
       </div>
+      <CreateEntryModal
+        isOpen={openEntryModal}
+        onClose={() => setOpenEntryModal(false)}
+        onCreated={loadEntries}
+      />
+      <CreateCategoryModal
+        isOpen={openCategoryModal}
+        onClose={() => setOpenCategoryModal(false)}
+        onCreated={loadEntries}
+      />
     </MainLayout>
   );
 }

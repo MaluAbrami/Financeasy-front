@@ -15,7 +15,6 @@
 .loginCard {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(10px);
     justify-content: center;
     display: flex;
     flex-direction: column;

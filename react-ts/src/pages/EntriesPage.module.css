@@ -22,7 +22,6 @@
 }
 
 .tableContainer {
-    backdrop-filter: blur(10px);
     display: flex;
     justify-content: center;
     width: 90%;

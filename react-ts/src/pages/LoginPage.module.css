@@ -9,16 +9,15 @@
     background-image: url("https://wallpapercave.com/wp/wp8962974.jpg");
     background-size: cover;
     background-position: center;
-    color: white;
 }
 
 .loginCard {
     height: 100%;
-    background-color: rgba(8, 8, 8, 0.2);
-    backdrop-filter: blur(10px);
+    background-color: rgba(8, 8, 8, 0.5);
     justify-content: center;
     display: flex;
     flex-direction: column;
+    color: white;
 }
 
 form {
@@ -48,6 +47,7 @@ input:focus {
 
 label {
     font-size: 25px;
+    color: white;
 }
 
 h1 {

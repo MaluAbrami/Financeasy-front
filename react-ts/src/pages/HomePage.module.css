@@ -32,7 +32,6 @@ div {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    backdrop-filter: blur(10px);
     border-radius: 12px;
 }
 

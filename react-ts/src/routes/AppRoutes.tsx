@@ -1,13 +1,11 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HomePage } from "../pages/HomePage.tsx";
 import { EntriesPage } from "../pages/EntriesPage.tsx";
-import { NewEntryPage } from "../pages/NewEntryPage.tsx";
 import { LoginPage } from "../pages/LoginPage.tsx";
 import { RegisterPage } from "../pages/RegisterPage.tsx";
 import { UpdateEntryPage } from "../pages/UpdateEntryPage.tsx";
 import { PrivateRoute } from "./PrivateRoute.tsx";
 import { UserPage } from "../pages/UserPage.tsx";
-import { NewCategoryPage } from "../pages/NewCategoryPage.tsx";
 import { CategoriesPage } from "../pages/CategoriesPage.tsx";
 
 export function AppRoutes() {
@@ -29,13 +27,6 @@ export function AppRoutes() {
                         </PrivateRoute>
                     }>
                 </Route>
-                <Route path="/entries/new" 
-                    element={
-                        <PrivateRoute>
-                            < NewEntryPage /> 
-                        </PrivateRoute>
-                    }>
-                </Route>
                 <Route path="/entries/update" 
                     element={
                         <PrivateRoute>
@@ -47,13 +38,6 @@ export function AppRoutes() {
                     element={
                         <PrivateRoute>
                             < CategoriesPage /> 
-                        </PrivateRoute>
-                    }>
-                </Route>
-                <Route path="/category/new" 
-                    element={
-                        <PrivateRoute>
-                            < NewCategoryPage /> 
                         </PrivateRoute>
                     }>
                 </Route>
