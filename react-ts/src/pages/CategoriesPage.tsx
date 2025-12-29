@@ -10,7 +10,7 @@ import { TableActionButton } from "../components/Table/TableActionButton";
 import { Trash, Pencil } from "lucide-react";
 import { CategoryOrderBy } from "../types/CategoryOrderBy";
 import { SortDirection } from "../types/SortDirection";
-import { CreateCategoryModal } from "../components/Category/CreateCategoryModal";
+import { CreateCategoryModal } from "../components/Modal/Category/CreateCategoryModal";
 
 interface CategoryViewModel {
   id: string;
