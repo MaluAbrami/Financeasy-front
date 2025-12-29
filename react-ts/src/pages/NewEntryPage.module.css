@@ -19,7 +19,7 @@
 .allFormsContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: 20px;
 }
 
@@ -92,4 +92,12 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
+}
+
+.lineContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
 }

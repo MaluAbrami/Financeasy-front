@@ -12,8 +12,9 @@ import { TableActionButton } from "../components/Table/TableActionButton";
 import { Trash, Pencil } from "lucide-react";
 import { FinancialEntryOrderBy } from "../types/FinancialEntryOrderBy";
 import { SortDirection } from "../types/SortDirection";
-import { CreateEntryModal } from "../components/Entry/CreateEntryModal";
-import { CreateCategoryModal } from "../components/Category/CreateCategoryModal";
+import { CreateEntryModal } from "../components/Modal/Entry/CreateEntryModal";
+import { CreateCategoryModal } from "../components/Modal/Category/CreateCategoryModal";
+import { CreateRecurrenceModal } from "../components/Modal/Recurrence/CreateRecurrenceModal";
 
 export function EntriesPage() {
   const [entries, setEntries] = useState<FinancialEntryViewModel[]>([]);
@@ -26,6 +27,7 @@ export function EntriesPage() {
   const[totalPages, setTotalPages] = useState<number>(1);
   const [openEntryModal, setOpenEntryModal] = useState(false);
   const [openCategoryModal, setOpenCategoryModal] = useState(false);
+  const [openRecurrenceModal, setOpenRecurrenceModal] = useState(false);
 
   function loadEntries() {
     financialEntryApi.list(page, pageSize, orderBy, direction).then((res) => {
@@ -111,7 +113,10 @@ export function EntriesPage() {
               <Button label="Novo lançamento" onClick={() => setOpenEntryModal(true)} />
             </div>
             <div>
-              <Button label="Nova Categoria" onClick={() => setOpenCategoryModal(true)} />
+              <Button label="Nova recorrência" onClick={() => setOpenRecurrenceModal(true)} />
+            </div>
+            <div>
+              <Button label="Nova categoria" onClick={() => setOpenCategoryModal(true)} />
             </div>
           </div>
         </div>
@@ -138,6 +143,11 @@ export function EntriesPage() {
       <CreateEntryModal
         isOpen={openEntryModal}
         onClose={() => setOpenEntryModal(false)}
+        onCreated={loadEntries}
+      />
+      <CreateRecurrenceModal
+        isOpen={openRecurrenceModal}
+        onClose={() => setOpenRecurrenceModal(false)}
         onCreated={loadEntries}
       />
       <CreateCategoryModal

@@ -7,6 +7,7 @@ import type { FinancialEntryOrderBy } from "../types/FinancialEntryOrderBy.ts";
 export const categoryApi = {
   listPaged: (page: number, pageSize: number, orderBy: FinancialEntryOrderBy, direction: SortDirection) => http.get<GetAllCategorys>(`/categorys/all/${page}/${pageSize}/${orderBy}/${direction}`),
   list: () => http.get<GetAllCategorys>(`/categorys/all`),
+  listFixeds: () => http.get<GetAllCategorys>(`/categorys/all-fixed`),
   create: (data: CreateCategoryRequest) => http.post("/categorys", data),
   delete: (id: string) => http.delete(`/categorys/${id}`) 
 };
