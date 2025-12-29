@@ -12,8 +12,15 @@ div {
 .topContainer {
     display: flex;
     flex-direction: row;
+    width: 100%;
     justify-content: space-between;
-    align-items: center;
+}
+
+.updateContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: end;
 }
 
 .buttonsContainer {
@@ -23,7 +30,9 @@ div {
 
 .bottomContainer {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
     gap: 15px;
 }
 

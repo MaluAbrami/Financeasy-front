@@ -22,7 +22,7 @@ export function EntriesPage() {
   const[page, setPage] = useState<number>(1);
   const[pageSize, setPageSize] = useState<number>(10);
   const[orderBy, setOrderBy] = useState<FinancialEntryOrderBy>(FinancialEntryOrderBy.Date);
-  const[direction, setDirection] = useState<SortDirection>(SortDirection.Asc);
+  const[direction, setDirection] = useState<SortDirection>(SortDirection.Desc);
   const[totalItems, setTotalItems] = useState<number>(0);
   const[totalPages, setTotalPages] = useState<number>(1);
   const [openEntryModal, setOpenEntryModal] = useState(false);
