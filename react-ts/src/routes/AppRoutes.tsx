@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { HomePage } from "../pages/HomePage.tsx";
-import { EntriesPage } from "../pages/EntriesPage.tsx";
-import { LoginPage } from "../pages/LoginPage.tsx";
-import { RegisterPage } from "../pages/RegisterPage.tsx";
-import { UpdateEntryPage } from "../pages/UpdateEntryPage.tsx";
+import { EntriesPage } from "../pages/Entries/EntriesPage.tsx";
+import { LoginPage } from "../pages/User/LoginPage.tsx";
+import { RegisterPage } from "../pages/User/RegisterPage.tsx";
+import { UpdateEntryPage } from "../pages/Entries/UpdateEntryPage.tsx";
 import { PrivateRoute } from "./PrivateRoute.tsx";
-import { UserPage } from "../pages/UserPage.tsx";
-import { CategoriesPage } from "../pages/CategoriesPage.tsx";
+import { UserPage } from "../pages/User/UserPage.tsx";
+import { CategoriesPage } from "../pages/Category/CategoriesPage.tsx";
+import { RecurrencesPage } from "../pages/Recurrence/RecurrencesPage.tsx";
 
 export function AppRoutes() {
     return (
@@ -38,6 +39,13 @@ export function AppRoutes() {
                     element={
                         <PrivateRoute>
                             < CategoriesPage /> 
+                        </PrivateRoute>
+                    }>
+                </Route>
+                <Route path="/recurrences" 
+                    element={
+                        <PrivateRoute>
+                            < RecurrencesPage /> 
                         </PrivateRoute>
                     }>
                 </Route>

@@ -1,9 +1,8 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import { Modal } from "../Modal";
 import { Button } from "../../Button/Button";
-import styles from "../../../pages/NewEntryPage.module.css";
+import styles from "../../../pages/Entries/NewEntryPage.module.css";
 import { categoryApi } from "../../../api/categoryApi";
-import { financialEntryApi } from "../../../api/financialEntryApi";
 import { recurrenceApi } from "../../../api/recurrenceApi";
 import { AdjustmentRule } from "../../../types/AdjustmentRule";
 import { Frequency } from "../../../types/Frequency";

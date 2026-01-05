@@ -1,20 +1,19 @@
-import { MainLayout } from "../layout/MainLayout";
-import { Card } from "../components/Card/Card";
-import { Button } from "../components/Button/Button";
-import { Table } from "../components/Table/Table";
+import { MainLayout } from "../../layout/MainLayout";
+import { Button } from "../../components/Button/Button";
+import { Table } from "../../components/Table/Table";
 import { Link } from "react-router-dom";
-import { financialEntryApi } from "../api/financialEntryApi";
+import { financialEntryApi } from "../../api/financialEntryApi";
 import { useEffect, useState } from "react";
 import styles from "./EntriesPage.module.css";
-import { EntryType } from "../types/EntryType";
-import type { FinancialEntryViewModel } from "../types/FinancialEntryViewModel";
-import { TableActionButton } from "../components/Table/TableActionButton";
+import { EntryType } from "../../types/EntryType";
+import type { FinancialEntryViewModel } from "../../types/FinancialEntryViewModel";
+import { TableActionButton } from "../../components/Table/TableActionButton";
 import { Trash, Pencil } from "lucide-react";
-import { FinancialEntryOrderBy } from "../types/FinancialEntryOrderBy";
-import { SortDirection } from "../types/SortDirection";
-import { CreateEntryModal } from "../components/Modal/Entry/CreateEntryModal";
-import { CreateCategoryModal } from "../components/Modal/Category/CreateCategoryModal";
-import { CreateRecurrenceModal } from "../components/Modal/Recurrence/CreateRecurrenceModal";
+import { FinancialEntryOrderBy } from "../../types/FinancialEntryOrderBy";
+import { SortDirection } from "../../types/SortDirection";
+import { CreateEntryModal } from "../../components/Modal/Entry/CreateEntryModal";
+import { CreateCategoryModal } from "../../components/Modal/Category/CreateCategoryModal";
+import { CreateRecurrenceModal } from "../../components/Modal/Recurrence/CreateRecurrenceModal";
 
 export function EntriesPage() {
   const [entries, setEntries] = useState<FinancialEntryViewModel[]>([]);

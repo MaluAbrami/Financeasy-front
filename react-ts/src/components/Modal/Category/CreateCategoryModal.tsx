@@ -1,7 +1,7 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Modal } from "../../Modal/Modal";
 import { Button } from "../../Button/Button";
-import styles from "../../../pages/NewEntryPage.module.css";
+import styles from "../../../pages/Entries/NewEntryPage.module.css";
 import { categoryApi } from "../../../api/categoryApi";
 import { EntryType } from "../../../types/EntryType";
 import { Frequency } from "../../../types/Frequency";

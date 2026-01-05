@@ -120,6 +120,11 @@ export function HomePage() {
                   <Button label="Ver lançamentos" />
                 </Link>
 
+                <Link to={"/recurrences"}>
+                  <Button label="Ver recorrências" />
+                </Link>
+
+
                 <Link to={"/categories"}>
                   <Button label="Ver categorias" />
                 </Link>

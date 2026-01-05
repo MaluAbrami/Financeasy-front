@@ -1,10 +1,10 @@
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { EntryType } from "../types/EntryType";
-import { financialEntryApi } from "../api/financialEntryApi";
-import { MainLayout } from "../layout/MainLayout";
+import { EntryType } from "../../types/EntryType";
+import { financialEntryApi } from "../../api/financialEntryApi";
+import { MainLayout } from "../../layout/MainLayout";
 import styles from "./NewEntryPage.module.css";
-import { Button } from "../components/Button/Button";
+import { Button } from "../../components/Button/Button";
 
 export function UpdateEntryPage() {
   const { state } = useLocation();

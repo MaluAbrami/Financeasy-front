@@ -1,16 +1,16 @@
-import { MainLayout } from "../layout/MainLayout";
-import { Button } from "../components/Button/Button";
-import { Table } from "../components/Table/Table";
+import { MainLayout } from "../../layout/MainLayout";
+import { Button } from "../../components/Button/Button";
+import { Table } from "../../components/Table/Table";
 import { Link } from "react-router-dom";
-import { categoryApi } from "../api/categoryApi";
+import { categoryApi } from "../../api/categoryApi";
 import { useEffect, useState } from "react";
-import styles from "./EntriesPage.module.css";
-import { EntryType } from "../types/EntryType";
-import { TableActionButton } from "../components/Table/TableActionButton";
+import styles from "../Entries/EntriesPage.module.css";
+import { EntryType } from "../../types/EntryType";
+import { TableActionButton } from "../../components/Table/TableActionButton";
 import { Trash, Pencil } from "lucide-react";
-import { CategoryOrderBy } from "../types/CategoryOrderBy";
-import { SortDirection } from "../types/SortDirection";
-import { CreateCategoryModal } from "../components/Modal/Category/CreateCategoryModal";
+import { CategoryOrderBy } from "../../types/CategoryOrderBy";
+import { SortDirection } from "../../types/SortDirection";
+import { CreateCategoryModal } from "../../components/Modal/Category/CreateCategoryModal";
 
 interface CategoryViewModel {
   id: string;

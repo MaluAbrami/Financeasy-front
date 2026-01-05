@@ -1,11 +1,9 @@
 import React, { useContext, useState } from "react";
-import { MainLayout } from "../layout/MainLayout";
-import { Button } from "../components/Button/Button";
-import { userApi } from "../api/userApi";
+import { userApi } from "../../api/userApi";
 import styles from "./LoginPage.module.css";
 import { Link, useNavigate } from "react-router-dom";
-import { AuthContext } from "../utils/AuthContext";
-import { LoginButton } from "../components/Button/LoginButton";
+import { AuthContext } from "../../utils/AuthContext";
+import { LoginButton } from "../../components/Button/LoginButton";
 
 export function LoginPage() {
   const [email, setEmail] = useState("");

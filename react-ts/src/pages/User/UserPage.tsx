@@ -1,9 +1,8 @@
 import { useContext } from "react";
-import { Button } from "../components/Button/Button";
-import { Card } from "../components/Card/Card";
-import { MainLayout } from "../layout/MainLayout";
+import { Button } from "../../components/Button/Button";
+import { MainLayout } from "../../layout/MainLayout";
 import styles from "./UserPage.module.css";
-import { AuthContext } from "../utils/AuthContext";
+import { AuthContext } from "../../utils/AuthContext";
 
 export function UserPage() {
     const email = localStorage.getItem("userCompanyEmail");
